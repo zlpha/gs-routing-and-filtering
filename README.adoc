@@ -200,3 +200,18 @@ Visit one of the Book service endpoints, as `localhost:8080/books/available`, an
 Congratulations! You've just used Spring to develop an edge service application that can proxy and filter requests for your microservices.
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+
+== AWS Test
+```bash
+cd gs-routing-and-filtering/complete
+mvn clean package -Dmaven.test.skip
+
+java -jar book/target/book-0.0.1-SNAPSHOT.jar
+curl localhost:8090/available
+curl localhost:8090/checked-out
+
+java -jar gateway/target/gateway-0.0.1-SNAPSHOT.jar
+curl localhost:8080/routes
+curl localhost:8080/books/available
+curl localhost:8080/books/checked-out
+```
